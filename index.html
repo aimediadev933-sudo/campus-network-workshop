@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintaining Campus Network Workshop | Bangladesh 2017</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1D1D1B;
+            background-color: #FCF5EC;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #F28C28 0%, #E88C2D 100%);
+            color: white;
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,20 L25,15 L30,20 Z" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="30" r="3" fill="rgba(255,255,255,0.1)"/><rect x="60" y="70" width="4" height="4" fill="rgba(255,255,255,0.1)"/></svg>');
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .workshop-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .meta-item {
+            background: rgba(255,255,255,0.2);
+            padding: 1.2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .meta-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .meta-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            border-left: 5px solid #F28C28;
+            position: relative;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #F28C28, #E88C2D);
+            opacity: 0.1;
+            border-radius: 0 15px 0 50px;
+        }
+
+        .section h2 {
+            color: #9F4B14;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section h2::before {
+            content: '';
+            width: 8px;
+            height: 40px;
+            background: linear-gradient(to bottom, #F28C28, #E88C2D);
+            border-radius: 4px;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 20px;
+            width: 80px;
+            height: 3px;
+            background: #F28C28;
+            border-radius: 2px;
+        }
+
+        .section h3 {
+            color: #E88C2D;
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section h3::before {
+            content: '▶';
+            color: #F28C28;
+            font-size: 0.8rem;
+        }
+
+        .section p, .section li {
+            margin-bottom: 1rem;
+            color: #1D1D1B;
+            font-size: 1.05rem;
+        }
+
+        .section ul {
+            padding-left: 2rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .section li::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            background: #F28C28;
+            border-radius: 50%;
+        }
+
+        /* Countries Banner */
+        .countries-banner {
+            background: linear-gradient(135deg, #E88C2D 0%, #F28C28 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .countries-list {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .country-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+
+        .country-flag {
+            width: 24px;
+            height: 16px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        /* Objectives Grid */
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .objective-card {
+            background: linear-gradient(135deg, #FCF5EC 0%, #F9F2E7 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid #F28C28;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(242,140,40,0.1) 0%, transparent 70%);
+            transition: all 0.3s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(242, 140, 40, 0.3);
+            border-color: #E88C2D;
+        }
+
+        .objective-card:hover::before {
+            top: -25%;
+            right: -25%;
+        }
+
+        .objective-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #F28C28, #E88C2D);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.8rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .objective-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #9F4B14;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .objective-desc {
+            color: #1D1D1B;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Activities Timeline */
+        .activities-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .activities-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #F28C28, #E88C2D);
+            border-radius: 2px;
+        }
+
+        .activity-item {
+            position: relative;
+            margin-bottom: 2rem;
+            background: #FCF5EC;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid #F5EDE0;
+            transition: all 0.3s ease;
+        }
+
+        .activity-item::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #F28C28;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .activity-item:hover {
+            border-color: #F28C28;
+            transform: translateX(10px);
+        }
+
+        .activity-title {
+            color: #9F4B14;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .activity-desc {
+            color: #1D1D1B;
+            line-height: 1.7;
+        }
+
+        /* Outcomes */
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .outcome-card {
+            background: linear-gradient(135deg, #F28C28 0%, #E88C2D 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .outcome-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+
+        .outcome-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .outcome-card:hover::before {
+            transform: rotate(45deg) scale(1.1);
+        }
+
+        .outcome-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .outcome-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .outcome-desc {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Partners */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .partner-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 3px solid #FCF5EC;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .partner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #F28C28, #E88C2D);
+            opacity: 0;
+            border-radius: 12px;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .partner-card:hover {
+            border-color: #F28C28;
+            transform: translateY(-5px);
+        }
+
+        .partner-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .partner-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #9F4B14;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .partner-role {
+            color: #1D1D1B;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Challenges and Future */
+        .challenge-future-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .challenge-card, .future-card {
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .challenge-card {
+            background: linear-gradient(135deg, #FFF5F0 0%, #FCF5EC 100%);
+            border-left: 5px solid #E88C2D;
+        }
+
+        .future-card {
+            background: linear-gradient(135deg, #F0F8FF 0%, #FCF5EC 100%);
+            border-left: 5px solid #F28C28;
+        }
+
+        /* SDGs */
+        .sdg-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .sdg-item {
+            background: linear-gradient(135deg, #F28C28, #E88C2D);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(242, 140, 40, 0.3);
+        }
+
+        .sdg-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(242, 140, 40, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #9F4B14;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .workshop-meta {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section {
+                padding: 2rem;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
+            }
+
+            .objectives-grid,
+            .outcomes-grid,
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .challenge-future-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .activities-timeline {
+                padding-left: 1rem;
+            }
+
+            .activity-item:hover {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.9rem;
+            }
+
+            .workshop-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .meta-item, .objective-card, .outcome-card {
+                padding: 1.5rem;
+            }
+
+            .countries-list {
+                gap: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .section {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .section:nth-child(even) {
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .meta-item {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .meta-item:nth-child(1) { animation-delay: 0.1s; }
+        .meta-item:nth-child(2) { animation-delay: 0.2s; }
+        .meta-item:nth-child(3) { animation-delay: 0.3s; }
+        .meta-item:nth-child(4) { animation-delay: 0.4s; }
+        .meta-item:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Maintaining Campus Network Workshop</h1>
+                <p class="subtitle">Strengthening Network Infrastructure Skills Across Universities</p>
+                
+                <div class="workshop-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Project Category</div>
+                        <div class="meta-value">WP2</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Call</div>
+                        <div class="meta-value">1st Call</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Duration</div>
+                        <div class="meta-value">5 Days</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Participants</div>
+                        <div class="meta-value">27 Professionals</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Host University</div>
+                        <div class="meta-value">PSTU</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="section">
+                <h2>Overview</h2>
+                <p>The "Maintaining Campus Network" workshop was designed to strengthen the skills of network professionals from Bangladeshi and regional universities in designing, managing, and troubleshooting campus networks. Organized by PSTU in collaboration with BdREN and supported by Asi@Connect, this comprehensive five-day training program combined technical lectures, hands-on laboratory sessions, and field visits.</p>
+                
+                <div class="countries-banner">
+                    <h4 style="margin-bottom: 1rem;">Countries Involved</h4>
+                    <div class="countries-list">
+                        <div class="country-item">
+                            <span class="country-flag"></span>
+                            <span>Bangladesh (Primary)</span>
+                        </div>
+                        <div class="country-item">
+                            <span class="country-flag"></span>
+                            <span>Sri Lanka</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>The workshop covered critical topics including routing protocols, firewall configuration, network monitoring, and documentation practices. With participants from multiple institutions, the training emphasized practical capacity development for sustaining reliable university networks across the region.</p>
+            </section>
+
+            <section class="section">
+                <h2>Project Objectives</h2>
+                <p><strong>Primary Goal:</strong> To build the capacity of network professionals to manage, monitor, and secure university campus networks effectively.</p>
+                
+                <div class="objectives-grid">
+                    <div class="objective-card">
+                        <div class="objective-icon">🏗️</div>
+                        <div class="objective-title">Infrastructure Training</div>
+                        <div class="objective-desc">Deliver comprehensive training on design and maintenance of network infrastructure</div>
+                    </div>
+                    <div class="objective-card">
+                        <div class="objective-icon">🛡️</div>
+                        <div class="objective-title">Security & Monitoring</div>
+                        <div class="objective-desc">Improve understanding of BGP routing, VLANs, firewall security, and NMS configuration</div>
+                    </div>
+                    <div class="objective-card">
+                        <div class="objective-icon">💻</div>
+                        <div class="objective-title">Hands-On Experience</div>
+                        <div class="objective-desc">Provide practical experience with monitoring tools like LibreNMS and NetFlow</div>
+                    </div>
+                    <div class="objective-card">
+                        <div class="objective-icon">🤝</div>
+                        <div class="objective-title">Regional Collaboration</div>
+                        <div class="objective-desc">Support knowledge exchange and collaboration between regional institutions</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Activities Conducted</h2>
+                <div class="activities-timeline">
+                    <div class="activity-item">
+                        <div class="activity-title">Technical Training Sessions (5 Days)</div>
+                        <div class="activity-desc">Comprehensive sessions covering network design, OSPF routing, VLANs, NAT, firewalls, monitoring systems, Linux-based tools, and documentation best practices.</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-title">Hands-On Laboratory Exercises</div>
+                        <div class="activity-desc">Practical exercises including OSPF routing configuration, VLAN setup, firewall implementation, NAT translation, and LibreNMS monitoring system deployment.</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-title">Opening & Closing Ceremonies</div>
+                        <div class="activity-desc">Formal ceremonies featuring remarks from PSTU Vice-Chancellor and BUET professors, with certificate presentations to recognize participant achievements.</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-title">SEA-ME-WE 5 Technical Visit</div>
+                        <div class="activity-desc">Educational tour of the SMW5 submarine cable landing station to enhance understanding of core internet infrastructure and international connectivity.</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-title">Cultural Exchange Events</div>
+                        <div class="activity-desc">Cultural night and social dinner events to foster community engagement, networking, and cultural exchange among regional participants.</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-title">Participant Evaluation</div>
+                        <div class="activity-desc">Web-based feedback system to assess session quality, trainer effectiveness, facilities, and overall workshop experience for continuous improvement.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Key Outcomes</h2>
+                <div class="outcomes-grid">
+                    <div class="outcome-card">
+                        <div class="outcome-icon">⚡</div>
+                        <div class="outcome-title">Enhanced Network Competencies</div>
+                        <div class="outcome-desc">Participants developed practical skills in managing routing protocols, VLANs, NAT configurations, and firewall systems</div>
+                    </div>
+                    <div class="outcome-card">
+                        <div class="outcome-icon">📊</div>
+                        <div class="outcome-title">Advanced Monitoring Skills</div>
+                        <div class="outcome-desc">Training completed in LibreNMS, NetFlow, and RANCID tools, significantly improving network monitoring capabilities</div>
+                    </div>
+                    <div class="outcome-card">
+                        <div class="outcome-icon">🌐</div>
+                        <div class="outcome-title">Collaboration Network</div>
+                        <div class="outcome-desc">Participants formed an active online community for knowledge sharing and collaborative troubleshooting</div>
+                    </div>
+                    <div class="outcome-card">
+                        <div class="outcome-icon">🎯</div>
+                        <div class="outcome-title">Direct Application</div>
+                        <div class="outcome-desc">Skills gained are immediately transferable for improving campus IT infrastructure at home institutions</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Partner Organizations</h2>
+                <div class="partners-grid">
+                    <div class="partner-card">
+                        <div class="partner-name">Patuakhali Science and Technology University (PSTU)</div>
+                        <div class="partner-role">Host Institution & Organizer</div>
+                    </div>
+                    <div class="partner-card">
+                        <div class="partner-name">Bangladesh Research and Education Network (BdREN)</div>
+                        <div class="partner-role">Technical Collaboration</div>
+                    </div>
+                    <div class="partner-card">
+                        <div class="partner-name">TEIN*CC / Asi@Connect</div>
+                        <div class="partner-role">Project Support & Coordination</div>
+                    </div>
+                    <div class="partner-card">
+                        <div class="partner-name">European Union</div>
+                        <div class="partner-role">Primary Donor & Funding</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Challenges & Future Directions</h2>
+                <div class="challenge-future-grid">
+                    <div class="challenge-card">
+                        <h3>Challenges Faced</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li><strong>International Participation:</strong> Some expected overseas participants couldn't attend due to illness and scheduling constraints</li>
+                            <li><strong>Time Constraints:</strong> Limited workshop duration prevented deeper exploration of complex technical areas</li>
+                        </ul>
+                    </div>
+                    <div class="future-card">
+                        <h3>Future Initiatives</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li><strong>Annual Events:</strong> Organize yearly workshops with expanded topics and broader international participation</li>
+                            <li><strong>Advanced Modules:</strong> Develop specialized follow-up workshops on advanced routing, cybersecurity, and NOC operations</li>
+                            <li><strong>Infrastructure Expansion:</strong> Enhance lab equipment and simulation tools for more effective hands-on learning experiences</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Sustainable Development Goals</h2>
+                <div class="sdg-container">
+                    <div class="sdg-item">SDG 4 - Quality Education</div>
+                    <div class="sdg-item">SDG 9 - Industry, Innovation and Infrastructure</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; Maintaining Campus Network Workshop | Hosted by PSTU</p>
+                <p>Supported by BdREN, Asi@Connect/TEIN*CC, and the European Union</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
